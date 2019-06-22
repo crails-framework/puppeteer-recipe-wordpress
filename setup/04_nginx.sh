@@ -6,4 +6,4 @@ apt-get install -y nginx
 
 systemctl enable nginx
 
-bash nginx.config > /etc/nginx/sites-enabled/$INSTANCE_NAME;
+bash nginx.config > /etc/nginx/sites-enabled/$INSTANCE_NAME

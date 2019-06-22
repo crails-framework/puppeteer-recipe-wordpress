@@ -13,3 +13,11 @@ apt-get install -y \
   php \
   php-fpm \
   php-mysql
+
+if [[ `which php-fpm` ]] ; then
+  systemctl enable php-fpm
+elif [[ `which php7.0-fpm` ]] ; then
+  systemctl enable php7.0-fpm
+else
+  echo "/!\\ WARNING: could not enable php-fpm service"
+fi
