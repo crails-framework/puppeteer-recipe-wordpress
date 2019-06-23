@@ -14,5 +14,5 @@ else
   mysql -e "CREATE USER '$APP_USER'@'localhost' IDENTIFIED BY '$APP_SQL_PASSWORD';"
 fi
 
-mysql -e "CREATE DATABASE \`$INSTANCE_NAME\`"
+mysql -e "CREATE DATABASE IF NOT EXISTS \`$INSTANCE_NAME\`"
 mysql -e "GRANT ALL PRIVILEGES ON \`$INSTANCE_NAME\`.* TO '$APP_USER'@'localhost';"
