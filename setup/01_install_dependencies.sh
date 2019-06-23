@@ -10,7 +10,6 @@ add-apt-repository universe
 apt-get update
 
 apt-get install -y \
-  php \
   php-fpm \
   php-mysql
 
