@@ -3,7 +3,7 @@
 source ./variables 2> /dev/null
 
 function get_http_group_name() {
-  user_line=`cat /etc/nginx/nginx.conf | grep -e "^user"` | cut -d ';' -f 1
+  user_line=`cat /etc/nginx/nginx.conf | grep -e "^user" | cut -d ';' -f 1`
   http_group_name=`echo $user_line | cut -d ' ' -f 3`
   http_user_name=`echo $user_line | cut -d ' ' -f 2`
 
