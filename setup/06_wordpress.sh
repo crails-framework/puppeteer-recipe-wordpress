@@ -34,7 +34,7 @@ chmod -R 775 "$app_dir"
 #
 # Link wp-content to Build path
 #
-wp_content_path="$app_dir/wordpress/wp-content"
+wp_content_path="$app_dir/wp-content"
 
 if [[ -L "$wp_content_path" && -d "$wp_content_path" ]] ; then
   unlink "$wp_content_path"
