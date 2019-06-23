@@ -15,7 +15,7 @@ apt-get install -y \
 
 if [[ `which php-fpm` ]] ; then
   systemctl enable php-fpm
-elif [[ `which php7.0-fpm` ]] ; then
+elif [[ `which php-fpm7.0` ]] ; then
   systemctl enable php7.0-fpm
 else
   echo "/!\\ WARNING: could not enable php-fpm service"
