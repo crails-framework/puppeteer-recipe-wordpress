@@ -20,6 +20,9 @@ function get_http_group_name() {
 
 app_dir="/home/$APP_USER/app"
 
+#
+# Install Wordpress
+#
 cd /tmp
 wget -c http://wordpress.org/latest.tar.gz
 tar -xzvf latest.tar.gz
@@ -27,3 +30,16 @@ tar -xzvf latest.tar.gz
 rsync -av wordpress/* "$app_dir"
 chown -R $APP_USER:`get_http_group_name` "$app_dir"
 chmod -R 775 "$app_dir"
+
+#
+# Link wp-content to Build path
+#
+wp_content_path="$app_dir/wordpress/wp-content"
+
+if [[ -L "$wp_content_path" && -d "$wp_content_path" ]] ; then
+  unlink "$wp_content_path"
+else
+  rm -Rf "$wp_content_path"
+fi
+
+ln -s "$BUILD_PATH" "$wp_content_path"
