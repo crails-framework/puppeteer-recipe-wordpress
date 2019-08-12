@@ -48,7 +48,7 @@ export BUILD_PATH="#{BUILD_PATH}"
 
 mkdir -p "$BUILD_PATH"
 
-for folder in plugins themes ; do
+for folder in plugins themes languages ; do
   rm -Rf "$BUILD_PATH/$folder"
   cp -R "$folder" "$BUILD_PATH"
 done
