@@ -28,6 +28,8 @@ wget -c http://wordpress.org/latest.tar.gz
 tar -xzvf latest.tar.gz
 
 rsync -av wordpress/* "$app_dir"
+mkdir "$app_dir/uploads"
+
 chown -R $APP_USER:`get_http_group_name` "$app_dir"
 chmod -R 775 "$app_dir"
 
