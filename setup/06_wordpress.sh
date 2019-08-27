@@ -30,6 +30,8 @@ tar -xzvf latest.tar.gz
 rsync -av wordpress/* "$app_dir"
 mkdir "$app_dir/uploads"
 
+bash wp.config > "$app_dir/wp-config.php"
+
 chown -R $APP_USER:`get_http_group_name` "$app_dir"
 chmod -R 775 "$app_dir"
 
@@ -45,3 +47,16 @@ else
 fi
 
 ln -s "$BUILD_PATH" "$wp_content_path"
+
+#
+# Create admin user, if no user exists (auth data: root;password)
+#
+user_count=`mysql -sN -e "SELECT COUNT(ID) FROM \`$INSTANCE_NAME\`.wp_users"`
+
+if [[ $user_count == "0" ]] ; then
+  encrypted_admin_password='$P$B4sJvG64B5N6Tz81DglGUySJRIc/mf.'
+  mysql -e "INSERT INTO \`$INSTANCE_NAME\`.wp_users VALUES ('', 'root', '$encrypted_admin_password', 'root', 'contact@company.com', '', '', '', 0, 'root')"
+  admin_user_id=`mysql -sN -e "SELECT ID FROM \`$INSTANCE_NAME\`.wp_users ORDER BY ID DESC LIMIT 1"`
+  mysql -e "INSERT INTO \`$INSTANCE_NAME\`.wp_usermeta VALUES(NULL, $admin_user_id, 'wp_capabilities', 'a:1:{s:13:\"administrator\";b:1;}')"
+  mysql -e "INSERT INTO \`$INSTANCE_NAME\`.wp_usermeta VALUES(NULL, $admin_user_id, 'wp_user_level', '10')"
+fi
