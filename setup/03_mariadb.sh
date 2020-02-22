@@ -2,7 +2,7 @@
 
 source ./variables 2> /dev/null
 
-apt-get install mariadb-server
+apt-get install -y mariadb-server
 
 systemctl enable mysql
 
