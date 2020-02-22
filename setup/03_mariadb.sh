@@ -4,7 +4,7 @@ source ./variables 2> /dev/null
 
 apt-get install -y mariadb-server
 
-systemctl enable mysql
+systemctl enable mariadb.service
 
 user_exists=`mysql -e "SELECT COUNT(User) FROM mysql.user WHERE User='$APP_USER'" | grep 1 || echo "0"`
 
