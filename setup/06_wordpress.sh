@@ -30,6 +30,7 @@ tar -xzvf latest.tar.gz
 rsync -av wordpress/* "$app_dir"
 mkdir -p "$app_dir/uploads"
 
+cd -
 bash wp.config > "$app_dir/wp-config.php"
 
 chown -R $APP_USER:`get_http_group_name` "$app_dir"
