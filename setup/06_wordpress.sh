@@ -28,7 +28,7 @@ wget -c http://wordpress.org/latest.tar.gz
 tar -xzvf latest.tar.gz
 
 rsync -av wordpress/* "$app_dir"
-mkdir "$app_dir/uploads"
+mkdir -p "$app_dir/uploads"
 
 bash wp.config > "$app_dir/wp-config.php"
 
