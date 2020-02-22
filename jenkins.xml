@@ -48,10 +48,7 @@ export BUILD_PATH="#{BUILD_PATH}"
 
 mkdir -p "$BUILD_PATH"
 
-for folder in plugins themes languages ; do
-  rm -Rf "$BUILD_PATH/$folder"
-  cp -R "$folder" "$BUILD_PATH"
-done
+tar -czvf "$BUILD_PATH/$BUILD_NUMBER.tar.gz" plugins themes languages
 </command>
     </hudson.tasks.Shell>
   </builders>
