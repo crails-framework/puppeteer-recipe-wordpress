@@ -1,0 +1,9 @@
+#!/bin/bash -ex
+
+if [[ -f "$APP_PATH/custom-backup.sh" ]] ; then
+  cd "$APP_PATH/runtime"
+  ./custom-backup.sh
+else
+  mysqldump "$INSTANCE_NAME" > "$BACKUP_DIR/database.sql"
+  cp -R "$APP_PATH/app/uploads" "$BACKUP_DIR/uploads"
+fi
