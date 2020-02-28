@@ -1,1 +1,10 @@
 #!/bin/bash -ex
+
+if [[ -f "$APP_PATH/custom-restore.sh" ]] ; then
+  cd "$APP_PATH"
+  ./custom-restore.sh
+else
+  rm -Rf "$APP_PATH/app/uploads"
+  cp -R "$BACKUP_DIR/uploads" "$APP_PATH/app"
+  mysql -p "$INSTANCE_NAME" < "$BACKUP_DIR/database.sql"
+fi
