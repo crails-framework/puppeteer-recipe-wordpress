@@ -32,6 +32,7 @@ mkdir -p "$app_dir/uploads"
 
 cd -
 bash wp.config > "$app_dir/wp-config.php"
+chmod +x "$app_dir/wp-config.php"
 
 chown -R $APP_USER:`get_http_group_name` "$app_dir"
 chmod -R 775 "$app_dir"
