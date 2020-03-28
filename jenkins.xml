@@ -46,7 +46,7 @@
 export BUILD_OPTIONS="#{BUILD_OPTIONS}"
 export BUILD_PATH="#{BUILD_PATH}"
 
-mkdir -p "$BUILD_PATH"
+mkdir -m 770 -p "$BUILD_PATH"
 
 tar -czf "$BUILD_PATH/$BUILD_NUMBER.tar.gz" plugins themes languages
 
